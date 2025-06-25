@@ -19,12 +19,13 @@ public class App {
         String texto = "Hola Mundo";
         String invertido = logica.invertirCadena(texto);
         System.out.println("invertirCadena(\"" + texto + "\"): " + invertido);
-
+         
         // Probar validarSimbolos
         String expresion = "{[()]}";
         boolean balanceado = logica.validarSimbolos(expresion);
         System.out.println("validarSimbolos(\"" + expresion + "\"): " + balanceado);
 
+        
         // Probar ordenarPila
         Stack<Integer> pila = new Stack<>();
         pila.push(3);
@@ -33,8 +34,10 @@ public class App {
         pila.push(2);
         System.out.println("ordenarPila([3, 1, 4, 2]): " + logica.ordenarPila(pila));
 
+        
         // Probar clasificarPorParidad
         LinkedList<Integer> original = new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         System.out.println("clasificarPorParidad([1, 2, 3, 4, 5, 6]): " + logica.clasificarPorParidad(original));
+        
     }
 }

@@ -129,4 +129,5 @@ Para contribuir a este proyecto, por favor crea un fork y envía una solicitud d
 ## Autores
 
 - [PABLO TORRES] - Desarrollo inicial
+- [DENNIS PENARANDA] - Desarrollo ejercicios propuestos
 # test hook

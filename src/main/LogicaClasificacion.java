@@ -15,7 +15,17 @@ public class LogicaClasificacion {
      *         Salida: "odnuM aloH"
      */
     public String invertirCadena(String texto) {
-        return "";
+        Stack<Character> pila = new Stack<>();
+        for (char c : texto.toCharArray()) {
+            pila.push(c);
+        }
+
+        StringBuilder invertida = new StringBuilder();
+        while (!pila.isEmpty()) {
+            invertida.append(pila.pop());
+        }
+
+        return invertida.toString();
     }
 
     /**
@@ -30,7 +40,39 @@ public class LogicaClasificacion {
      *         Salida: true
      */
     public boolean validarSimbolos(String expresion) {
-        return false;
+        // mapa para relacionar los símbolos de apertura y cierre
+        Map<Character, Character> simbolosCierreApertura = new HashMap<>();
+        simbolosCierreApertura.put(')', '(');
+        simbolosCierreApertura.put('}', '{');
+        simbolosCierreApertura.put(']', '[');
+
+        // Pila para almacenar los símbolos de apertura encontrados
+        Stack<Character> pila = new Stack<>();
+
+        // Recorrer la expresión carácter por carácter
+        for (char caracter : expresion.toCharArray()) {
+
+            if (caracter == '(' || caracter == '{' || caracter == '[') {
+                pila.push(caracter);
+            }
+
+            else if (caracter == ')' || caracter == '}' || caracter == ']') {
+                if (pila.isEmpty()) {
+                    return false;
+                }
+                char simboloAperturaEsperado = simbolosCierreApertura.get(caracter);
+
+                char simboloAperturaActual = pila.pop();
+
+                if (simboloAperturaActual != simboloAperturaEsperado) {
+                    return false;
+                }
+            }
+            // Si el carácter no es un símbolo de apertura o cierre, simplemente lo ignoramos
+        }
+
+        // Al final, si la pila está vacía, todos los símbolos de apertura tuvieron su correspondiente cierre
+        return pila.isEmpty();
     }
 
     /**
@@ -43,8 +85,19 @@ public class LogicaClasificacion {
      *         Salida: [1, 2, 3, 4]
      */
     public List<Integer> ordenarPila(Stack<Integer> pila) {
+        Stack<Integer> pilaAuxiliar = new Stack<>();
 
-        return new ArrayList<>();
+        while (!pila.isEmpty()) {
+
+            int temp = pila.pop();
+
+            while (!pilaAuxiliar.isEmpty() && pilaAuxiliar.peek() > temp) {
+                pila.push(pilaAuxiliar.pop());
+            }
+
+            pilaAuxiliar.push(temp);
+        }
+        return pilaAuxiliar;
     }
 
     /**
@@ -59,6 +112,22 @@ public class LogicaClasificacion {
      */
     public List<Integer> clasificarPorParidad(LinkedList<Integer> original) {
 
-        return new ArrayList<>();
+        LinkedList<Integer> pares = new LinkedList<>();
+        LinkedList<Integer> impares = new LinkedList<>();
+
+        for (Integer numero : original) {
+
+            if (numero % 2 == 0) {
+
+                pares.add(numero);
+            } else {
+
+                impares.add(numero);
+            }
+        }
+
+        pares.addAll(impares);
+
+        return pares;
     }
 }
